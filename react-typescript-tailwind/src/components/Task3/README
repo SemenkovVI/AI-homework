@@ -1,0 +1,32 @@
+Suggested commit message:
+
+perf: Move heavy computation to Web Worker to reduce TBT
+
+- Moves CPU-intensive loop from main thread to Web Worker
+- Reduces Total Blocking Time from 600ms
+- Eliminates UI jank during computation
+- Adds proper cleanup with worker.terminate()
+
+PR Description
+
+## Performance Optimization
+
+This PR addresses high Total Blocking Time (600ms) caused by a CPU-intensive loop blocking the main thread. 
+
+### Changes
+- Created dedicated Web Worker for heavy computation
+- Moved synchronous loop to worker thread
+- Added proper worker lifecycle management
+- Maintains same functionality with better UX
+
+### Expected Improvements
+- Reduced Total Blocking Time
+- Better UI responsiveness
+- No UI jank during computation
+- Improved Lighthouse performance score
+
+### Testing
+Please verify:
+1. Computation still works correctly
+2. UI remains responsive during calculation
+3. Run Lighthouse to confirm TBT improvement
